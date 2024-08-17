@@ -6,7 +6,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended : false}));
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/urlShortener')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/urlShortener' , { bufferCommands: false })
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.log(err));
 
