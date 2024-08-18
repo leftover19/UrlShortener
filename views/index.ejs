@@ -22,6 +22,7 @@
           <th>Full URL</th>
           <th>Short URL</th>
           <th>Clicks</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +38,10 @@
                     <%= shortUrl.clicks%>
                 </td>
                 <td>
-                  <button type="button"class="btn btn-danger" >delete</button>
+                  <form action="/deleteUrl" method="POST" style="display:inline;">
+                    <input type="hidden" name="shortUrl" value="<%= shortUrl.short %>">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                  </form>                  
                 </td>
             </tr>
         <% }) %>

@@ -19,9 +19,13 @@ app.get('/' , async (req:Request, res:Response)=>{
 
 app.post('/shortUrls' , async (req:Request , res:Response)=>{
     await ShortUrl.create({full : req.body.fullUrl});
-
     res.redirect('/');
 })
+app.post('/deleteUrl', async (req: Request, res: Response) => {
+    await ShortUrl.deleteOne({ short: req.body.shortUrl })
+    .then(() => res.redirect('/'))
+  });
+
 
 app.get('/:shortUrl' , async (req : Request  , res : Response)=>{
     const shortUrl = await ShortUrl.findOne({short : req.params.shortUrl});
