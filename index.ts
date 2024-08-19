@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import ShortUrl from './models/shortUrls';
 const app = express();
-
+const baseURL = "http://localhost:8000/";
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended : false}));
@@ -24,7 +24,7 @@ app.post('/shortUrls' , async (req:Request , res:Response)=>{
 app.post('/deleteUrl', async (req: Request, res: Response) => {
     await ShortUrl.deleteOne({ short: req.body.shortUrl })
     .then(() => res.redirect('/'))
-  });
+});
 
 
 app.get('/:shortUrl' , async (req : Request  , res : Response)=>{
@@ -34,5 +34,7 @@ app.get('/:shortUrl' , async (req : Request  , res : Response)=>{
     shortUrl.save();
     res.redirect(shortUrl.full);
 })
+
+
 
 app.post('/shortUrls')

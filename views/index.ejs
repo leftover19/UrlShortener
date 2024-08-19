@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
   <title>Url Shrinker</title>
 </head>
 <body>
@@ -22,6 +24,7 @@
           <th>Full URL</th>
           <th>Short URL</th>
           <th>Clicks</th>
+          <th>Copy</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -38,6 +41,12 @@
                     <%= shortUrl.clicks%>
                 </td>
                 <td>
+                  <button type="button" class="btn btn-light">
+                    <i class="bi bi-clipboard " onclick="navigator.clipboard.writeText(baseURL + `<%= shortUrl.short%>`  )" ></i>
+                  </button> 
+                </form>
+                </td>
+                <td>
                   <form action="/deleteUrl" method="POST" style="display:inline;">
                     <input type="hidden" name="shortUrl" value="<%= shortUrl.short %>">
                     <button class="btn btn-danger" type="submit">Delete</button>
@@ -50,4 +59,7 @@
     </table>
   </div>
 </body>
+<script>
+  const baseURL = window.location.origin + '/';
+</script>
 </html>
